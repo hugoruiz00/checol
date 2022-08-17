@@ -1,28 +1,66 @@
-import { View, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
 import StyledButton from '../components/StyledButton';
 import SelectBox from 'react-native-multi-selectbox';
 
-const RegisterTripScreen = () => {
+const RegisterTripScreen = ({ navigation }) => {
     const [tripInfo, setTripInfo] = React.useState({
-        userName:'',
-        isValidUserName:true,
+        userName: '',
+        isValidUserName: true,
         price: null,
         isValidPrice: true
     });
 
-    const onChangePriceInput = (val) => {
+    const onChangeUserInput = (val) => {
         setTripInfo({
             ...tripInfo,
-            price: val,
-            isValidPrice: true,
+            userName: val,
+            isValidUserName: true,
         });
+    }
+
+    const onChangePriceInput = (val) => {
+        if (val) {
+            setTripInfo({
+                ...tripInfo,
+                price: val,
+                isValidPrice: true,
+            });
+        } else {
+            setTripInfo({
+                ...tripInfo,
+                price: val,
+                isValidPrice: true,
+            });
+        }
 
         console.log(tripInfo);
     }
 
     const handleSave = () => {
-        console.log('test');
+        if (!tripInfo.userName) {
+            setTripInfo({
+                ...tripInfo,
+                isValidUserName: false,
+            });
+            return;
+        }
+        if (!tripInfo.price) {
+            setTripInfo({
+                ...tripInfo,
+                isValidPrice: false,
+            });
+            return;
+        }
+        if (isNaN(tripInfo.price)) {
+            setTripInfo({
+                ...tripInfo,
+                price: null,
+                isValidPrice: false,
+            });
+            return;
+        }
+        navigation.navigate('Home');
     }
 
     return (
@@ -39,15 +77,21 @@ const RegisterTripScreen = () => {
                         id: '002',
                     },]}
                 value={tripInfo.userName}
-                onChange={()=>{}}
+                onChange={(val) => onChangeUserInput(val)}
                 hideInputFilter={false}
+                inputPlaceholder="Seleccionar"
             />
+            {tripInfo.isValidUserName || <Text style={styles.errorMsg}>El nombre de la persona es obligatorio</Text>}
+
             <TextInput
                 style={styles.priceInput}
                 onChangeText={(val) => onChangePriceInput(val)}
                 placeholder="Precio del viaje"
-                keyboardType="numeric">
+                keyboardType="numeric"
+                value={tripInfo.price}>
             </TextInput>
+            {tripInfo.isValidPrice || <Text style={styles.errorMsg}>El precio del viaje es obligatorio</Text>}
+
             <StyledButton text={'Guardar'} action={handleSave}>
             </StyledButton>
         </View>
@@ -62,8 +106,12 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 0.4,
         padding: 10,
-        marginBottom: 10,
     },
+    errorMsg: {
+        color: 'red',
+        fontSize: 15,
+        marginBottom: 15,
+    }
 });
 
 export default RegisterTripScreen
