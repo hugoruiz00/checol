@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeScreen from './src/screens/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import RegisterTripScreen from './src/screens/RegisterTripScreen';
+import { initDatabase } from './src/utils/db';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    async function init() {
+      await initDatabase();
+    }
+    init();
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>

@@ -1,16 +1,29 @@
 import { View, FlatList, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Trips from '../data/Trips.js';
 import ListItem from '../components/ListItem.js';
 import FloatingActionButton from '../components/FloatingActionButton.js';
+import { getDbConnection, insertUser, insertTrip, getTrips } from '../utils/db.js';
 
 const HomeScreen = ({ navigation }) => {
+    const [trips, setTrips] = useState([]);
+
+    
+    useEffect(() => {
+        const fetchDb = async () => {
+            const db = await getDbConnection();
+            const tripsFromDb = await getTrips(db);
+            setTrips(tripsFromDb);
+        }
+        fetchDb();
+    }, [])
+
 
     return (
         <>
             <View>
                 <FlatList
-                    data={Trips}
+                    data={trips}
                     keyExtractor={
                         (item) => item.id
                     }
@@ -24,11 +37,11 @@ const HomeScreen = ({ navigation }) => {
                 />
             </View>
             <FloatingActionButton
-                action={()=> navigation.navigate('RegisterTrip')}>
+                action={() => navigation.navigate('RegisterTrip')}>
 
             </FloatingActionButton>
         </>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

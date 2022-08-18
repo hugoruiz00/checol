@@ -5,8 +5,8 @@ import SelectBox from 'react-native-multi-selectbox';
 
 const RegisterTripScreen = ({ navigation }) => {
     const [tripInfo, setTripInfo] = React.useState({
-        userName: '',
-        isValidUserName: true,
+        user: '',
+        isValidUser: true,
         price: null,
         isValidPrice: true
     });
@@ -14,8 +14,8 @@ const RegisterTripScreen = ({ navigation }) => {
     const onChangeUserInput = (val) => {
         setTripInfo({
             ...tripInfo,
-            userName: val,
-            isValidUserName: true,
+            user: val,
+            isValidUser: true,
         });
     }
 
@@ -38,10 +38,10 @@ const RegisterTripScreen = ({ navigation }) => {
     }
 
     const handleSave = () => {
-        if (!tripInfo.userName) {
+        if (!tripInfo.user) {
             setTripInfo({
                 ...tripInfo,
-                isValidUserName: false,
+                isValidUser: false,
             });
             return;
         }
@@ -76,12 +76,12 @@ const RegisterTripScreen = ({ navigation }) => {
                         item: 'Louis',
                         id: '002',
                     },]}
-                value={tripInfo.userName}
+                value={tripInfo.user}
                 onChange={(val) => onChangeUserInput(val)}
                 hideInputFilter={false}
                 inputPlaceholder="Seleccionar"
             />
-            {tripInfo.isValidUserName || <Text style={styles.errorMsg}>El nombre de la persona es obligatorio</Text>}
+            {tripInfo.isValidUser || <Text style={styles.errorMsg}>El nombre de la persona es obligatorio</Text>}
 
             <TextInput
                 style={styles.priceInput}
