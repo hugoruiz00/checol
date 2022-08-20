@@ -2,10 +2,10 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
 const ListItem = ({ item }) => {
-    const { user_id, price } = item;
+    const { price, date, name } = item;
     return (
         <View style={styles.container}>
-            <Text style={styles.primaryText}>{user_id}</Text>
+            <Text style={styles.primaryText}>{name}</Text>
             <Text>${price}</Text>
         </View>
     )
