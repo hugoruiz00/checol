@@ -7,11 +7,12 @@ import { getDbConnection, insertUser, insertTrip, getTrips } from '../utils/db.j
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
-
     
     useEffect(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
+            // const trip = await insertTrip(db, 20, 2);
+            // console.log(trip);
             const tripsFromDb = await getTrips(db);
             setTrips(tripsFromDb);
         }

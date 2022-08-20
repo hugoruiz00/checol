@@ -1,9 +1,24 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import StyledButton from '../components/StyledButton';
 import SelectBox from 'react-native-multi-selectbox';
+import { getDbConnection, getUsers, insertTrip } from '../utils/db';
+import StyledTextInput from '../components/StyledTextInput';
 
 const RegisterTripScreen = ({ navigation }) => {
+    const [users, setUsers] = useState([]);
+    const [userErrorMsg, setUserErrorMsg] = useState('');
+    const [priceErrorMsg, setpriceErrorMsg] = useState('');
+
+    useEffect(() => {
+        const fetchDb = async () => {
+            const db = await getDbConnection();
+            const usersFromDb = await getUsers(db);
+            setUsers(usersFromDb);
+        }
+        fetchDb();
+    }, [])
+
     const [tripInfo, setTripInfo] = React.useState({
         user: '',
         isValidUser: true,
@@ -33,16 +48,15 @@ const RegisterTripScreen = ({ navigation }) => {
                 isValidPrice: true,
             });
         }
-
-        console.log(tripInfo);
     }
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!tripInfo.user) {
             setTripInfo({
                 ...tripInfo,
                 isValidUser: false,
             });
+            setUserErrorMsg('El nombre de la persona es obligatorio');
             return;
         }
         if (!tripInfo.price) {
@@ -50,47 +64,49 @@ const RegisterTripScreen = ({ navigation }) => {
                 ...tripInfo,
                 isValidPrice: false,
             });
+            setpriceErrorMsg('El precio del viaje es obligatorio');
             return;
         }
         if (isNaN(tripInfo.price)) {
             setTripInfo({
                 ...tripInfo,
-                price: null,
                 isValidPrice: false,
             });
+            setpriceErrorMsg('El precio del viaje debe ser un número');
             return;
         }
-        navigation.navigate('Home');
+
+        try {
+            const db = await getDbConnection();
+            const user = await insertTrip(db, tripInfo.price, tripInfo.user.id);
+            db.close();
+            navigation.navigate('Home');
+        } catch (error) {
+            console.log(error);
+            navigation.navigate('Home');
+        }
     }
 
     return (
         <View style={styles.viewStyle}>
             <SelectBox
-                label="Nombre de la persona"
-                options={[
-                    {
-                        item: 'Juan',
-                        id: '001',
-                    },
-                    {
-                        item: 'Louis',
-                        id: '002',
-                    },]}
+                label=""
+                options={users}
                 value={tripInfo.user}
                 onChange={(val) => onChangeUserInput(val)}
                 hideInputFilter={false}
-                inputPlaceholder="Seleccionar"
+                inputPlaceholder="Nombre"
             />
-            {tripInfo.isValidUser || <Text style={styles.errorMsg}>El nombre de la persona es obligatorio</Text>}
+            {tripInfo.isValidUser || <Text style={styles.errorMsg}>{userErrorMsg}</Text>}
 
-            <TextInput
-                style={styles.priceInput}
-                onChangeText={(val) => onChangePriceInput(val)}
-                placeholder="Precio del viaje"
-                keyboardType="numeric"
-                value={tripInfo.price}>
-            </TextInput>
-            {tripInfo.isValidPrice || <Text style={styles.errorMsg}>El precio del viaje es obligatorio</Text>}
+            <StyledTextInput
+                type={"numeric"}
+                action={(val) => onChangePriceInput(val)}
+                placeholder={"Precio del viaje"}
+                value={tripInfo.price}
+                isValid={tripInfo.isValidPrice}
+                errorMsg={priceErrorMsg}>
+            </StyledTextInput>
 
             <StyledButton text={'Guardar'} action={handleSave}>
             </StyledButton>
@@ -101,11 +117,6 @@ const RegisterTripScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     viewStyle: {
         margin: 12,
-    },
-    priceInput: {
-        height: 40,
-        borderWidth: 0.4,
-        padding: 10,
     },
     errorMsg: {
         color: 'red',
