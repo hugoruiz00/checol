@@ -49,7 +49,7 @@ const RegisterTripScreen = ({ navigation }) => {
         if (errorUserExists === '' && errorPriceExists === '' && errorPriceIsNumeric === '') {
             try {
                 const db = await getDbConnection();
-                const user = await insertTrip(db, tripInfo.price, tripInfo.user.id);
+                const trip = await insertTrip(db, tripInfo.price, tripInfo.user.id);
                 db.close();
                 navigation.navigate('Home');
             } catch (error) {
@@ -88,7 +88,13 @@ const RegisterTripScreen = ({ navigation }) => {
             <StyledButton
                 text={'Guardar'}
                 action={handleSave}
-                color={"#2b50aa"}>
+                customStyles={{ backgroundColor: "#2b50aa" }}>
+            </StyledButton>
+
+            <StyledButton
+                text={'Registrar nuevo nombre'}
+                action={() => navigation.navigate('RegisterUser')}
+                customStyles={{ backgroundColor: "#3D71F5", height: 35 }}>
             </StyledButton>
         </View >
     )

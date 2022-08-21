@@ -5,7 +5,7 @@ const ListItem = ({ item }) => {
     const { price, date, name } = item;
     return (
         <View style={styles.container}>
-            <Text style={styles.primaryText}>{name}</Text>
+            <Text style={styles.primaryText}>Viaje realizado para {name}</Text>
             <Text>${price}</Text>
         </View>
     )
