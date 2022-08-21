@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 
-const StyledTextInput = ({ type, action, placeholder, value, isValid, errorMsg }) => {
+const StyledTextInput = ({ type, action, placeholder, value, errorMsg }) => {
     return (
-        <View>
+        <View style={styles.viewStyle}>
             <TextInput
                 style={styles.textInput}
                 onChangeText={action}
@@ -11,12 +11,15 @@ const StyledTextInput = ({ type, action, placeholder, value, isValid, errorMsg }
                 keyboardType={type}
                 value={value}>
             </TextInput>
-            {isValid || <Text style={styles.errorMsg}>{errorMsg}</Text>}
+            {errorMsg && <Text style={styles.errorMsg}>{errorMsg}</Text>}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    viewStyle:{
+        marginBottom: 20,
+    },
     textInput: {
         height: 40,
         borderWidth: 0.4,
@@ -25,7 +28,6 @@ const styles = StyleSheet.create({
     errorMsg: {
         color: 'red',
         fontSize: 15,
-        marginBottom: 15,
     }
 });
 
