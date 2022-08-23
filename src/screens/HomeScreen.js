@@ -1,9 +1,8 @@
 import { View, FlatList, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Trips from '../data/Trips.js';
 import ListItem from '../components/ListItem.js';
 import FloatingActionButton from '../components/FloatingActionButton.js';
-import { getDbConnection, insertUser, insertTrip, getTrips } from '../utils/db.js';
+import { getDbConnection, getTrips } from '../utils/db.js';
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);

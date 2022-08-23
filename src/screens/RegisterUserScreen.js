@@ -25,9 +25,15 @@ const RegisterUserScreen = ({ navigation }) => {
     }
 
     const handleSave = async () => {
-        errorNameExists = exists(name, 'El nombre es obligatorio');
+        const errorNameExists = exists(name, 'El nombre es obligatorio');
 
         if (errorNameExists === '') {
+            const foundName = users.find((user) => user.item == name);
+            if (foundName) {
+                setNameErrorMsg('Este nombre ya existe, ingrese otro nombre');
+                return;
+            }
+
             try {
                 const db = await getDbConnection();
                 const user = await insertUser(db, name);
