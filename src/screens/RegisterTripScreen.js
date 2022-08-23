@@ -42,11 +42,10 @@ const RegisterTripScreen = ({ navigation }) => {
     }
 
     const handleSave = async () => {
-        errorUserExists = exists(tripInfo.user, 'El nombre de la persona es obligatorio');
-        errorPriceExists = exists(tripInfo.price, 'El precio del viaje es obligatorio');
-        errorPriceIsNumeric = isNumeric(tripInfo.price, 'El precio del viaje debe ser un número');
+        const errorUserExists = exists(tripInfo.user, 'El nombre de la persona es obligatorio');
+        const errorPriceExists = exists(tripInfo.price, 'El precio del viaje es obligatorio');
 
-        if (errorUserExists === '' && errorPriceExists === '' && errorPriceIsNumeric === '') {
+        if (errorUserExists === '' && errorPriceExists === '' && priceErrorMsg === '') {
             try {
                 const db = await getDbConnection();
                 const trip = await insertTrip(db, tripInfo.price, tripInfo.user.id);
@@ -59,7 +58,6 @@ const RegisterTripScreen = ({ navigation }) => {
         } else {
             setUserErrorMsg(exists(tripInfo.user, 'El nombre de la persona es obligatorio'));
             setPriceErrorMsg(exists(tripInfo.price, 'El precio del viaje es obligatorio'));
-            errorPriceExists || setPriceErrorMsg(isNumeric(tripInfo.price, 'El precio del viaje debe ser un número'));
         }
     }
 
@@ -92,7 +90,7 @@ const RegisterTripScreen = ({ navigation }) => {
             </StyledButton>
 
             <StyledButton
-                text={'Registrar nuevo nombre'}
+                text={'Registrar nuevo cliente'}
                 action={() => navigation.navigate('RegisterUser')}
                 customStyles={{ backgroundColor: "#3D71F5", height: 35 }}>
             </StyledButton>

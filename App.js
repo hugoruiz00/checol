@@ -37,7 +37,7 @@ const App = () => {
           name='RegisterUser'
           component={RegisterUserScreen}
           options={{
-            title: 'Registrar nuevo nombre',
+            title: 'Registrar nuevo cliente',
           }}
         />
       </Stack.Navigator>

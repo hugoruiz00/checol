@@ -59,4 +59,5 @@ export default HomeScreen;
  * Functionalities
  * - Reports by day, week or  month
  * - Share reports
+ * - Verify that the list is updating when adding new register
  */

@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import StyledButton from '../components/StyledButton';
 import { getDbConnection, getUsers, insertUser } from '../utils/db';
@@ -40,8 +40,11 @@ const RegisterUserScreen = ({ navigation }) => {
                 db.close();
                 navigation.navigate('Home');
             } catch (error) {
-                console.log(error);
-                navigation.navigate('Home');
+                Alert.alert(
+                    "Error",
+                    "Ha ocurrido un error, inténtelo nuevamente",
+                    [{ text: "Aceptar", onPress: () => console.log("OK Pressed") }]
+                );
             }
         } else {
             setNameErrorMsg(exists(name, 'El nombre es obligatorio'));
@@ -53,7 +56,7 @@ const RegisterUserScreen = ({ navigation }) => {
             <StyledTextInput
                 type={"default"}
                 action={(val) => onChangeNameInput(val)}
-                placeholder={"Nombre de la persona"}
+                placeholder={"Nombre"}
                 value={name}
                 errorMsg={nameErrorMsg}>
             </StyledTextInput>
