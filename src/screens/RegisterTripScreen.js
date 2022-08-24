@@ -5,6 +5,7 @@ import SelectBox from 'react-native-multi-selectbox';
 import { getDbConnection, getUsers, insertTrip } from '../utils/db';
 import StyledTextInput from '../components/StyledTextInput';
 import { exists, isNumeric } from '../validations/validation';
+import ErrorMessage from '../components/ErrorMessage';
 
 const RegisterTripScreen = ({ navigation }) => {
     const [users, setUsers] = useState([]);
@@ -74,9 +75,9 @@ const RegisterTripScreen = ({ navigation }) => {
                     value={tripInfo.user}
                     onChange={(val) => onChangeUserInput(val)}
                     hideInputFilter={false}
-                    inputPlaceholder="Nombre"
+                    inputPlaceholder="Nombre del cliente"
                 />
-                {userErrorMsg && <Text style={styles.errorMsg}>{userErrorMsg}</Text>}
+                {userErrorMsg && <ErrorMessage msg={userErrorMsg} />}
             </View>
 
             <StyledTextInput
@@ -110,10 +111,6 @@ const styles = StyleSheet.create({
     },
     select: {
         marginBottom: 20,
-    },
-    errorMsg: {
-        color: 'red',
-        fontSize: 15,
     },
     textSeparator: {
         alignSelf: 'center',

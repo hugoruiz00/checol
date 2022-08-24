@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
+import ErrorMessage from './ErrorMessage'
 
 const StyledTextInput = ({ type, action, placeholder, value, errorMsg }) => {
     return (
@@ -11,24 +12,21 @@ const StyledTextInput = ({ type, action, placeholder, value, errorMsg }) => {
                 keyboardType={type}
                 value={value}>
             </TextInput>
-            {errorMsg && <Text style={styles.errorMsg}>{errorMsg}</Text>}
+            {errorMsg && <ErrorMessage msg={errorMsg}/>}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    viewStyle:{
+    viewStyle: {
         marginBottom: 20,
     },
     textInput: {
         height: 40,
-        borderWidth: 0.4,
+        borderBottomWidth: 2,
+        borderBottomColor: "#26438f",
         padding: 10,
     },
-    errorMsg: {
-        color: 'red',
-        fontSize: 15,
-    }
 });
 
 export default StyledTextInput

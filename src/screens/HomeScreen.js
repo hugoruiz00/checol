@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     itemSeparator: {
-        borderColor: '#00000020',
+        borderColor: '#2b50aa90',
         borderWidth: 0.3,
         marginHorizontal: 10,
         marginVertical: 7,
@@ -60,4 +60,5 @@ export default HomeScreen;
  * - Reports by day, week or  month
  * - Share reports
  * - Verify that the list is updating when adding new register
+ * - Edit and delete clients
  */
