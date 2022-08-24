@@ -53,7 +53,11 @@ const RegisterTripScreen = ({ navigation }) => {
                 navigation.navigate('Home');
             } catch (error) {
                 console.log(error);
-                navigation.navigate('Home');
+                Alert.alert(
+                    "Error",
+                    "Ha ocurrido un error, inténtelo nuevamente",
+                    [{ text: "Aceptar", onPress: () => console.log("OK Pressed") }]
+                );
             }
         } else {
             setUserErrorMsg(exists(tripInfo.user, 'El nombre de la persona es obligatorio'));
@@ -89,10 +93,12 @@ const RegisterTripScreen = ({ navigation }) => {
                 customStyles={{ backgroundColor: "#2b50aa" }}>
             </StyledButton>
 
+            <Text style={styles.textSeparator}>O registrar...</Text>
+
             <StyledButton
-                text={'Registrar nuevo cliente'}
+                text={'Nuevo cliente'}
                 action={() => navigation.navigate('RegisterUser')}
-                customStyles={{ backgroundColor: "#3D71F5", height: 35 }}>
+                customStyles={{ backgroundColor: "#6e6e6e", height: 35 }}>
             </StyledButton>
         </View >
     )
@@ -108,6 +114,12 @@ const styles = StyleSheet.create({
     errorMsg: {
         color: 'red',
         fontSize: 15,
+    },
+    textSeparator: {
+        alignSelf: 'center',
+        color: '#1a1a1a',
+        fontSize: 16,
+        marginBottom: 8,
     }
 });
 
