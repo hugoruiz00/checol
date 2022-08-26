@@ -17,8 +17,8 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <TabBarIcon
                             focused={focused}
-                            source={require('../../assets/home.png')}
-                            text={'Principal'}
+                            source={require('../../assets/trips.png')}
+                            text={'Viajes'}
                         />
                     )
                 }}

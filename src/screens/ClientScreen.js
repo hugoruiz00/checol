@@ -39,7 +39,7 @@ const ClientScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     itemSeparator: {
         borderColor: '#2b50aa90',
-        borderWidth: 0.3,
+        borderWidth: 0.5,
         marginHorizontal: 10,
         marginVertical: 7,
     }
