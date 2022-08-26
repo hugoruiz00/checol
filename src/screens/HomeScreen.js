@@ -1,6 +1,6 @@
 import { View, FlatList, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import ListItem from '../components/ListItem.js';
+import ListTripItem from '../components/ListTripItem';
 import FloatingActionButton from '../components/FloatingActionButton.js';
 import { getDbConnection, getTrips } from '../utils/db.js';
 
@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
                         (item) => item.id
                     }
                     renderItem={
-                        ({ item, index }) => <ListItem item={item}></ListItem>
+                        ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                     }
                     ItemSeparatorComponent={() =>
                         <View style={styles.itemSeparator}>

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { formatDate } from '../utils/dateFormatter';
 
-const ListItem = ({ item }) => {
+const ListTripItem = ({ item }) => {
     const { price, date, name } = item;
     return (
         <View style={styles.container}>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ListItem
+export default ListTripItem
