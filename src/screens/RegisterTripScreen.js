@@ -98,7 +98,7 @@ const RegisterTripScreen = ({ navigation }) => {
 
             <StyledButton
                 text={'Nuevo cliente'}
-                action={() => navigation.navigate('RegisterUser')}
+                action={() => navigation.navigate('RegisterClient')}
                 customStyles={{ backgroundColor: "#6e6e6e", height: 35 }}>
             </StyledButton>
         </View >

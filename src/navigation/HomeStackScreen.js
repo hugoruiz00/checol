@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
-import RegisterUserScreen from '../screens/RegisterUserScreen';
+import RegisterClientScreen from '../screens/RegisterClientScreen';
 import RegisterTripScreen from '../screens/RegisterTripScreen';
 
 const Stack = createNativeStackNavigator();
@@ -24,8 +24,8 @@ const HomeStackScreen = () => {
                 }}
             />
             <Stack.Screen
-                name='RegisterUser'
-                component={RegisterUserScreen}
+                name='RegisterClient'
+                component={RegisterClientScreen}
                 options={{
                     title: 'Registrar nuevo cliente',
                 }}

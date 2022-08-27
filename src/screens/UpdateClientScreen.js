@@ -1,11 +1,13 @@
 import { View, StyleSheet, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import StyledButton from '../components/StyledButton';
-import { getDbConnection, getUsers, insertUser } from '../utils/db';
+import { getDbConnection, getUsers, updateUser } from '../utils/db';
 import StyledTextInput from '../components/StyledTextInput';
 import { exists } from '../validations/validation';
 
-const RegisterUserScreen = ({ navigation }) => {
+const UpdateClientScreen = ({ route, navigation }) => {
+    const { userId, userName } = route.params;
+
     const [users, setUsers] = useState([]);
     const [name, setName] = useState('');
     const [nameErrorMsg, setNameErrorMsg] = useState('');
@@ -17,6 +19,7 @@ const RegisterUserScreen = ({ navigation }) => {
             setUsers(usersFromDb);
         }
         fetchDb();
+        setName(userName);
     }, []);
 
     const onChangeNameInput = (val) => {
@@ -28,7 +31,7 @@ const RegisterUserScreen = ({ navigation }) => {
         const errorNameExists = exists(name, 'El nombre es obligatorio');
 
         if (errorNameExists === '') {
-            const foundName = users.find((user) => user.item == name);
+            const foundName = users.find((user) => user.item == name && name != userName);
             if (foundName) {
                 setNameErrorMsg('Este nombre ya existe, ingrese otro nombre');
                 return;
@@ -36,9 +39,9 @@ const RegisterUserScreen = ({ navigation }) => {
 
             try {
                 const db = await getDbConnection();
-                const user = await insertUser(db, name);
+                const user = await updateUser(db, userId, name);
                 db.close();
-                navigation.navigate('Home');
+                navigation.navigate('Clients');
             } catch (error) {
                 Alert.alert(
                     "Error",
@@ -76,4 +79,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RegisterUserScreen
+export default UpdateClientScreen

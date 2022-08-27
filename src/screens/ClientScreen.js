@@ -1,6 +1,6 @@
 import { View, FlatList, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import ListUserItem from '../components/ListUserItem';
+import ListClientItem from '../components/ListClientItem';
 import { getDbConnection, getUsers } from '../utils/db.js';
 
 const ClientScreen = ({ navigation }) => {
@@ -24,7 +24,7 @@ const ClientScreen = ({ navigation }) => {
                         (item) => item.id
                     }
                     renderItem={
-                        ({ item, index }) => <ListUserItem item={item}></ListUserItem>
+                        ({ item, index }) => <ListClientItem item={item} navigation={navigation}></ListClientItem>
                     }
                     ItemSeparatorComponent={() =>
                         <View style={styles.itemSeparator}>

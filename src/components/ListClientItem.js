@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-na
 import React from 'react'
 import { deleteUser, getDbConnection } from '../utils/db';
 
-const ListUserItem = ({ item }) => {
+const ListClientItem = ({ item, navigation }) => {
     return (
         <View style={styles.container}>
             <View>
@@ -12,6 +12,10 @@ const ListUserItem = ({ item }) => {
 
                 <TouchableOpacity
                     onPress={() => {
+                        navigation.navigate('UpdateClient', {
+                            userId: item.id,
+                            userName: item.item,
+                        });
                     }}
                 >
                     <Image
@@ -32,7 +36,7 @@ const ListUserItem = ({ item }) => {
                             "Advertencia",
                             "¿Está seguro de eliminar este cliente?. No podrá recuperarlo y se perderán los viajes registrados para este cliente.",
                             [{
-                                text: "Aceptar", onPress: async() => {
+                                text: "Aceptar", onPress: async () => {
                                     try {
                                         const db = await getDbConnection();
                                         const result = await deleteUser(db, item.id);
@@ -85,4 +89,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ListUserItem
+export default ListClientItem
