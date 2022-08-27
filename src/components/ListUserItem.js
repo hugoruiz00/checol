@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
+import { deleteUser, getDbConnection } from '../utils/db';
 
 const ListUserItem = ({ item }) => {
     return (
@@ -30,8 +31,22 @@ const ListUserItem = ({ item }) => {
                         Alert.alert(
                             "Advertencia",
                             "¿Está seguro de eliminar este cliente?. No podrá recuperarlo y se perderán los viajes registrados para este cliente.",
-                            [{ text: "Aceptar", onPress: () => console.log("OK Pressed") },
-                            { text: "Cancelar", onPress: () => console.log("OK Me") }]
+                            [{
+                                text: "Aceptar", onPress: async() => {
+                                    try {
+                                        const db = await getDbConnection();
+                                        const result = await deleteUser(db, item.id);
+                                        db.close();
+                                    } catch (error) {
+                                        Alert.alert(
+                                            "Error",
+                                            "Ha ocurrido un error, inténtelo nuevamente",
+                                            [{ text: "Aceptar", onPress: () => console.log("OK Pressed") }]
+                                        );
+                                    }
+                                }
+                            },
+                            { text: "Cancelar", onPress: () => console.log("Cancelled") }]
                         );
                     }}
                 >

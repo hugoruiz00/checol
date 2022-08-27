@@ -60,3 +60,9 @@ export const getUsers = async (db) => {
     });
     return users;
 }
+
+export const deleteUser = async (db, id) => {
+    const deleteQuery = `DELETE FROM users WHERE id=${id}`;
+    const result = await db.executeSql(deleteQuery);
+    return result;
+}
