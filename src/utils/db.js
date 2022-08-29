@@ -67,7 +67,6 @@ export const deleteUser = async (db, id) => {
     return result;
 }
 
-
 export const updateUser = async (db, id, newName) => {
     const updateQuery = `UPDATE users SET name='${newName}'  WHERE id=${id}`;
     const result = await db.executeSql(updateQuery);

@@ -1,22 +1,25 @@
 import { View, FlatList, StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ListTripItem from '../components/ListTripItem';
 import FloatingActionButton from '../components/FloatingActionButton.js';
 import { getDbConnection, getTrips } from '../utils/db.js';
+import { useFocusEffect } from '@react-navigation/native';
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
-    
-    useEffect(() => {
+
+    const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
             // const trip = await insertTrip(db, 20, 2);
             // console.log(trip);
             const tripsFromDb = await getTrips(db);
             setTrips(tripsFromDb);
+            db.close();
         }
         fetchDb();
-    }, [])
+    }, []);
+    useFocusEffect(focusEffect);
 
 
     return (

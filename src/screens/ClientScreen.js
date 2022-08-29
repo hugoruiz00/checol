@@ -1,19 +1,22 @@
 import { View, FlatList, StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ListClientItem from '../components/ListClientItem';
 import { getDbConnection, getUsers } from '../utils/db.js';
+import { useFocusEffect } from '@react-navigation/native';
 
 const ClientScreen = ({ navigation }) => {
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
+    const focuseEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
             const usersFromDb = await getUsers(db);
             setUsers(usersFromDb);
+            db.close();
         }
         fetchDb();
-    }, [])
+    }, []);
+    useFocusEffect(focuseEffect);
 
     return (
         <>
