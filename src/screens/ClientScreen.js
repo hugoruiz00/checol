@@ -27,7 +27,7 @@ const ClientScreen = ({ navigation }) => {
                         (item) => item.id
                     }
                     renderItem={
-                        ({ item, index }) => <ListClientItem item={item} navigation={navigation}></ListClientItem>
+                        ({ item, index }) => <ListClientItem setUsers={setUsers} item={item} navigation={navigation}></ListClientItem>
                     }
                     ItemSeparatorComponent={() =>
                         <View style={styles.itemSeparator}>
