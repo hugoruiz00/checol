@@ -15,6 +15,7 @@ const RegisterClientScreen = ({ navigation }) => {
             const db = await getDbConnection();
             const usersFromDb = await getUsers(db);
             setUsers(usersFromDb);
+            db.close();
         }
         fetchDb();
     }, []);
@@ -38,7 +39,7 @@ const RegisterClientScreen = ({ navigation }) => {
                 const db = await getDbConnection();
                 const user = await insertUser(db, name);
                 db.close();
-                navigation.navigate('Home');
+                navigation.navigate('RegisterTrip');
             } catch (error) {
                 Alert.alert(
                     "Error",

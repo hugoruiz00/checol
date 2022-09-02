@@ -11,16 +11,12 @@ const HomeScreen = ({ navigation }) => {
     const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
-            // const trip = await insertTrip(db, 20, 2);
-            // console.log(trip);
             const tripsFromDb = await getTrips(db);
             setTrips(tripsFromDb);
-            db.close();
         }
         fetchDb();
     }, []);
     useFocusEffect(focusEffect);
-
 
     return (
         <>

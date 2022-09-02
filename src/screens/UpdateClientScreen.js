@@ -17,6 +17,7 @@ const UpdateClientScreen = ({ route, navigation }) => {
             const db = await getDbConnection();
             const usersFromDb = await getUsers(db);
             setUsers(usersFromDb);
+            db.close();
         }
         fetchDb();
         setName(userName);

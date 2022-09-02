@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import StyledButton from '../components/StyledButton';
 import SelectBox from 'react-native-multi-selectbox';
 import { getDbConnection, getUsers, insertTrip } from '../utils/db';
 import StyledTextInput from '../components/StyledTextInput';
 import { exists, isNumeric } from '../validations/validation';
 import ErrorMessage from '../components/ErrorMessage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const RegisterTripScreen = ({ navigation }) => {
     const [users, setUsers] = useState([]);
@@ -16,14 +17,17 @@ const RegisterTripScreen = ({ navigation }) => {
         price: null,
     });
 
-    useEffect(() => {
+    const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
             const usersFromDb = await getUsers(db);
             setUsers(usersFromDb);
+            db.close();
         }
         fetchDb();
     }, []);
+
+    useFocusEffect(focusEffect);
 
     const onChangeUserInput = (val) => {
         setTripInfo({
