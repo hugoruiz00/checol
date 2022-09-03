@@ -8,6 +8,7 @@ import SelectReportDate from '../components/SelectReportDate';
 import ItemSeparator from '../components/ItemSeparator';
 import LinearGradient from 'react-native-linear-gradient';
 import { formatDateForQuery } from '../utils/dateFormatter';
+import MessageForNoResults from '../components/MessageForNoResults';
 
 const ReportScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -48,17 +49,20 @@ const ReportScreen = ({ navigation }) => {
                         sumPrices={sumPrices}
                     />
                 </LinearGradient>
-                <FlatList
-                    style={styles.flatList}
-                    data={trips}
-                    keyExtractor={
-                        (item) => item.id
-                    }
-                    renderItem={
-                        ({ item, index }) => <ListTripItem item={item}></ListTripItem>
-                    }
-                    ItemSeparatorComponent={() => <ItemSeparator />}
-                />
+                {trips.length == 0 ?
+                    <MessageForNoResults /> :
+                    <FlatList
+                        style={styles.flatList}
+                        data={trips}
+                        keyExtractor={
+                            (item) => item.id
+                        }
+                        renderItem={
+                            ({ item, index }) => <ListTripItem item={item}></ListTripItem>
+                        }
+                        ItemSeparatorComponent={() => <ItemSeparator />}
+                    />
+                }
             </View>
         </>
     );
