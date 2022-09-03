@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { getDbConnection, getTrips } from '../utils/db';
 import { useFocusEffect } from '@react-navigation/native';
@@ -6,6 +6,7 @@ import ListTripItem from '../components/ListTripItem';
 import ReportSummary from '../components/ReportSummary';
 import SelectReportDate from '../components/SelectReportDate';
 import ItemSeparator from '../components/ItemSeparator';
+import LinearGradient from 'react-native-linear-gradient';
 
 const ReportScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -30,17 +31,26 @@ const ReportScreen = ({ navigation }) => {
     return (
         <>
             <View style={styles.view}>
-                <SelectReportDate
-                    setDate={setDate}
-                    setOpen={setOpen}
-                    date={date}
-                    open={open}
-                />
-                <ReportSummary
-                    countTrips={countTrips}
-                    sumPrices={sumPrices}
-                />
+                <LinearGradient
+                    colors={['#2b50aa45', '#2b50aa08']}
+                    
+                    style={styles.reportHeader}
+                >
+                    <View>
+                        <SelectReportDate
+                            setDate={setDate}
+                            setOpen={setOpen}
+                            date={date}
+                            open={open}
+                        />
+                        <ReportSummary
+                            countTrips={countTrips}
+                            sumPrices={sumPrices}
+                        />
+                    </View>
+                </LinearGradient>
                 <FlatList
+                    style={styles.flatList}
                     data={trips}
                     keyExtractor={
                         (item) => item.id
@@ -57,8 +67,14 @@ const ReportScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     view: {
-        marginHorizontal: 10,
+        flex: 1
     },
+    reportHeader: {
+        paddingHorizontal: 5,
+    },
+    flatList: {
+        marginHorizontal: 10
+    }
 });
 
 export default ReportScreen;
