@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-const MessageForNoResults = () => {
+const MessageForNoResults = ({message, textSecondary}) => {
     return (
         <View style={styles.view}>
-            <Text style={styles.text}>No hay viajes registrados en la fecha seleccionada.</Text>
-            <Text style={styles.textSecondary}>Pruebe con otra fecha.</Text>
+            <Text style={styles.text}>{message}</Text>
+            <Text style={styles.textSecondary}>{textSecondary}</Text>
         </View>
     )
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         color: '#5f5f5f'
     },
     textSecondary: {
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#444446'

@@ -34,7 +34,7 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                     onPress={() => {
                         Alert.alert(
                             "Advertencia",
-                            "¿Está seguro de eliminar este cliente?. No podrá recuperarlo y se perderán los viajes registrados para este cliente.",
+                            "¿Está seguro de eliminar este cliente?. No podrá recuperarlo, pero los viajes registrados se mantendrán sin nombre de cliente.",
                             [
                                 { text: "Cancelar", onPress: () => console.log("Cancelled") },
                                 {

@@ -1,4 +1,4 @@
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import ListTripItem from '../components/ListTripItem';
 import FloatingActionButton from '../components/FloatingActionButton.js';
@@ -6,6 +6,7 @@ import { getDbConnection, getTrips } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
 import ItemSeparator from '../components/ItemSeparator';
 import { formatDateForQuery } from '../utils/dateFormatter';
+import MessageForNoResults from '../components/MessageForNoResults';
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -22,17 +23,24 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <>
-            <View>
-                <FlatList
-                    data={trips}
-                    keyExtractor={
-                        (item) => item.id
-                    }
-                    renderItem={
-                        ({ item, index }) => <ListTripItem item={item}></ListTripItem>
-                    }
-                    ItemSeparatorComponent={() => <ItemSeparator />}
-                />
+            <View style={styles.view}>
+                {trips.length == 0 ?
+                    <MessageForNoResults
+                        message={'No hay viajes registrados.'}
+                        textSecondary={'Registre un viaje presionando el botón de la esquina'}
+                    />
+                    :
+                    <FlatList
+                        data={trips}
+                        keyExtractor={
+                            (item) => item.id
+                        }
+                        renderItem={
+                            ({ item, index }) => <ListTripItem item={item}></ListTripItem>
+                        }
+                        ItemSeparatorComponent={() => <ItemSeparator />}
+                    />
+                }
             </View>
             <FloatingActionButton
                 action={() => navigation.navigate('RegisterTrip')}>
@@ -41,6 +49,12 @@ const HomeScreen = ({ navigation }) => {
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    view: {
+        flex: 1
+    }
+});
 
 export default HomeScreen;
 

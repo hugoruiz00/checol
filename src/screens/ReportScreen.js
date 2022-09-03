@@ -50,7 +50,9 @@ const ReportScreen = ({ navigation }) => {
                     />
                 </LinearGradient>
                 {trips.length == 0 ?
-                    <MessageForNoResults /> :
+                    <MessageForNoResults
+                        message={'No hay viajes registrados en la fecha seleccionada.'}
+                        textSecondary={'Pruebe con otra fecha.'} /> :
                     <FlatList
                         style={styles.flatList}
                         data={trips}
