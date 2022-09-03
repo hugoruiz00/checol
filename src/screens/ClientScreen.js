@@ -1,8 +1,9 @@
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import ListClientItem from '../components/ListClientItem';
 import { getDbConnection, getUsers } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
+import ItemSeparator from '../components/ItemSeparator';
 
 const ClientScreen = ({ navigation }) => {
     const [users, setUsers] = useState([]);
@@ -29,23 +30,11 @@ const ClientScreen = ({ navigation }) => {
                     renderItem={
                         ({ item, index }) => <ListClientItem setUsers={setUsers} item={item} navigation={navigation}></ListClientItem>
                     }
-                    ItemSeparatorComponent={() =>
-                        <View style={styles.itemSeparator}>
-                        </View>
-                    }
+                    ItemSeparatorComponent={() => <ItemSeparator />}
                 />
             </View>
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    itemSeparator: {
-        borderColor: '#2b50aa90',
-        borderWidth: 0.5,
-        marginHorizontal: 10,
-        marginVertical: 7,
-    }
-});
 
 export default ClientScreen;

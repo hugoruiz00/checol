@@ -1,9 +1,10 @@
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import ListTripItem from '../components/ListTripItem';
 import FloatingActionButton from '../components/FloatingActionButton.js';
 import { getDbConnection, getTrips } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
+import ItemSeparator from '../components/ItemSeparator';
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -29,10 +30,7 @@ const HomeScreen = ({ navigation }) => {
                     renderItem={
                         ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                     }
-                    ItemSeparatorComponent={() =>
-                        <View style={styles.itemSeparator}>
-                        </View>
-                    }
+                    ItemSeparatorComponent={() => <ItemSeparator />}
                 />
             </View>
             <FloatingActionButton
@@ -42,15 +40,6 @@ const HomeScreen = ({ navigation }) => {
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    itemSeparator: {
-        borderColor: '#2b50aa90',
-        borderWidth: 0.3,
-        marginHorizontal: 10,
-        marginVertical: 7,
-    }
-});
 
 export default HomeScreen;
 

@@ -5,6 +5,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import ListTripItem from '../components/ListTripItem';
 import ReportSummary from '../components/ReportSummary';
 import SelectReportDate from '../components/SelectReportDate';
+import ItemSeparator from '../components/ItemSeparator';
 
 const ReportScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -47,10 +48,7 @@ const ReportScreen = ({ navigation }) => {
                     renderItem={
                         ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                     }
-                    ItemSeparatorComponent={() =>
-                        <View style={styles.itemSeparator}>
-                        </View>
-                    }
+                    ItemSeparatorComponent={() => <ItemSeparator />}
                 />
             </View>
         </>
@@ -61,12 +59,6 @@ const styles = StyleSheet.create({
     view: {
         marginHorizontal: 10,
     },
-    itemSeparator: {
-        borderColor: '#2b50aa90',
-        borderWidth: 0.3,
-        marginHorizontal: 10,
-        marginVertical: 7,
-    }
 });
 
 export default ReportScreen;
