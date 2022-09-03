@@ -1,12 +1,13 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { getDbConnection, getTrips } from '../utils/db';
+import { getDbConnection, getTripsWihtDateCondition } from '../utils/db';
 import { useFocusEffect } from '@react-navigation/native';
 import ListTripItem from '../components/ListTripItem';
 import ReportSummary from '../components/ReportSummary';
 import SelectReportDate from '../components/SelectReportDate';
 import ItemSeparator from '../components/ItemSeparator';
 import LinearGradient from 'react-native-linear-gradient';
+import { formatDateForQuery } from '../utils/dateFormatter';
 
 const ReportScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -19,13 +20,13 @@ const ReportScreen = ({ navigation }) => {
     const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
-            const tripsFromDb = await getTrips(db);
+            const tripsFromDb = await getTripsWihtDateCondition(db, formatDateForQuery(date));
             setTrips(tripsFromDb);
             setCountTrips(tripsFromDb.length);
             setSumPrices(tripsFromDb.reduce((a, b) => a + b.price, 0));
         }
         fetchDb();
-    }, []);
+    }, [date]);
     useFocusEffect(focusEffect);
 
     return (
@@ -33,21 +34,19 @@ const ReportScreen = ({ navigation }) => {
             <View style={styles.view}>
                 <LinearGradient
                     colors={['#2b50aa45', '#2b50aa08']}
-                    
+
                     style={styles.reportHeader}
                 >
-                    <View>
-                        <SelectReportDate
-                            setDate={setDate}
-                            setOpen={setOpen}
-                            date={date}
-                            open={open}
-                        />
-                        <ReportSummary
-                            countTrips={countTrips}
-                            sumPrices={sumPrices}
-                        />
-                    </View>
+                    <SelectReportDate
+                        setDate={setDate}
+                        setOpen={setOpen}
+                        date={date}
+                        open={open}
+                    />
+                    <ReportSummary
+                        countTrips={countTrips}
+                        sumPrices={sumPrices}
+                    />
                 </LinearGradient>
                 <FlatList
                     style={styles.flatList}

@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import DatePicker from 'react-native-date-picker'
 import { formatDate } from '../utils/dateFormatter'
-import NativeDialogManagerAndroid from 'react-native/Libraries/NativeModules/specs/NativeDialogManagerAndroid'
 
 const SelectReportDate = ({ date, open, setDate, setOpen }) => {
     return (
@@ -21,9 +20,9 @@ const SelectReportDate = ({ date, open, setDate, setOpen }) => {
                 title='Seleccione una fecha...'
                 open={open}
                 date={date}
-                onConfirm={(date) => {
+                onConfirm={(selectedDate) => {
                     setOpen(false)
-                    setDate(date)
+                    setDate(selectedDate)
                 }}
                 confirmText='Aceptar'
                 onCancel={() => {
