@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { getDbConnection, getTripsWihtDateCondition } from '../utils/db';
+import { getDbConnection, getTrips } from '../utils/db';
 import { useFocusEffect } from '@react-navigation/native';
 import ListTripItem from '../components/ListTripItem';
 import ReportSummary from '../components/ReportSummary';
@@ -21,7 +21,7 @@ const ReportScreen = ({ navigation }) => {
     const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
-            const tripsFromDb = await getTripsWihtDateCondition(db, formatDateForQuery(date));
+            const tripsFromDb = await getTrips(db, formatDateForQuery(date));
             setTrips(tripsFromDb);
             setCountTrips(tripsFromDb.length);
             setSumPrices(tripsFromDb.reduce((a, b) => a + b.price, 0));

@@ -5,6 +5,7 @@ import FloatingActionButton from '../components/FloatingActionButton.js';
 import { getDbConnection, getTrips } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
 import ItemSeparator from '../components/ItemSeparator';
+import { formatDateForQuery } from '../utils/dateFormatter';
 
 const HomeScreen = ({ navigation }) => {
     const [trips, setTrips] = useState([]);
@@ -12,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
     const focusEffect = useCallback(() => {
         const fetchDb = async () => {
             const db = await getDbConnection();
-            const tripsFromDb = await getTrips(db);
+            const tripsFromDb = await getTrips(db, formatDateForQuery(new Date()));
             setTrips(tripsFromDb);
         }
         fetchDb();

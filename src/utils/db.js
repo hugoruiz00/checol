@@ -39,18 +39,7 @@ export const insertTrip = async (db, price, userId) => {
     return result;
 }
 
-export const getTrips = async (db) => {
-    const trips = [];
-    const results = await db.executeSql("SELECT trips.id, price, date, name FROM trips INNER JOIN users on trips.user_id=users.id");
-    results.forEach((result) => {
-        for (let i = 0; i < result.rows.length; i++) {
-            trips.push(result.rows.item(i));
-        }
-    });
-    return trips;
-}
-
-export const getTripsWihtDateCondition = async (db, dateCondition) => {
+export const getTrips = async (db, dateCondition) => {
     const trips = [];
     const results = await db.executeSql(`SELECT trips.id, price, date, name FROM trips INNER JOIN users on trips.user_id=users.id WHERE substr(date, 1, 10)='${dateCondition}'`);
     results.forEach((result) => {
