@@ -40,8 +40,9 @@ export const insertTrip = async (db, price, userId) => {
 }
 
 export const getTrips = async (db) => {
+    // WHERE date>'2022-08-01'
     const trips = [];
-    const results = await db.executeSql("SELECT trips.id, price, date, name FROM trips INNER JOIN users on trips.user_id=users.id LIMIT 10");
+    const results = await db.executeSql("SELECT trips.id, price, date, name FROM trips INNER JOIN users on trips.user_id=users.id");
     results.forEach((result) => {
         for (let i = 0; i < result.rows.length; i++) {
             trips.push(result.rows.item(i));
