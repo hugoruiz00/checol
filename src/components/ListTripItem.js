@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import { formatDate } from '../utils/dateFormatter';
+import { formatDateFromDb } from '../utils/dateFormatter';
 
 const ListTripItem = ({ item }) => {
     const { price, date, name } = item;
@@ -8,7 +8,7 @@ const ListTripItem = ({ item }) => {
         <View style={styles.container}>
             <View>
                 <Text style={styles.name}>Solicitado por {name}</Text>
-                <Text style={styles.date}>{formatDate(date)}</Text>
+                <Text style={styles.date}>{formatDateFromDb(date)}</Text>
             </View>
             <Text style={styles.price}>${price}</Text>
         </View>
