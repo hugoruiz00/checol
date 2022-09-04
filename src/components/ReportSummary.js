@@ -10,7 +10,7 @@ const ReportSummary = ({ countTrips, sumPrices }) => {
             </View>
             <View style={styles.formGroup}>
                 <Text style={styles.textDescription}>Total de ganancias</Text>
-                <Text style={styles.value}>{sumPrices}</Text>
+                <Text style={styles.value}>${sumPrices}</Text>
             </View>
         </View>
     )
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     },
     value: {
         fontSize: 15,
+        fontWeight: 'bold',
+        color:"#2b50aa"
     }
 });
 

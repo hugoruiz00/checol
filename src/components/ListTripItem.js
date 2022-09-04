@@ -7,7 +7,7 @@ const ListTripItem = ({ item }) => {
     return (
         <View style={styles.container}>
             <View>
-                <Text style={styles.name}>Solicitado por {name}</Text>
+                <Text style={styles.name}>{name ? `Solicitado por ${name}` : 'Cliente no registrado'}</Text>
                 <Text style={styles.date}>{formatDateFromDb(date)}</Text>
             </View>
             <Text style={styles.price}>${price}</Text>
@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
     name: {
         fontWeight: 'bold',
         fontSize: 18,
-        color:'#575757'
+        color: '#575757'
     },
     date: {
         fontWeight: 'bold',
         fontSize: 16,
-        color:'#7c7c7c'
+        color: '#7c7c7c'
     },
     price: {
         fontWeight: 'bold',

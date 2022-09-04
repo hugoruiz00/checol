@@ -14,9 +14,9 @@ export const createTables = async (db) => {
     // const delUser = "DROP TABLE IF EXISTS users";
     // await db.executeSql(delTrip);
     // await db.executeSql(delUser);
-    const userTablequery = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) DEFAULT 'Cliente no registrado')";
+    const userTablequery = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100))";
     const tripTablequery = `CREATE TABLE IF NOT EXISTS trips(id INTEGER PRIMARY KEY AUTOINCREMENT, price REAL, date VARCHAR(50), user_id INTEGER,
-            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET DEFAULT ON UPDATE NO ACTION)`;
+            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL)`;
     await db.executeSql(userTablequery);
     await db.executeSql(tripTablequery);
 }
@@ -41,7 +41,7 @@ export const insertTrip = async (db, price, userId) => {
 
 export const getTrips = async (db, dateCondition) => {
     const trips = [];
-    const results = await db.executeSql(`SELECT trips.id, price, date, name FROM trips INNER JOIN users on trips.user_id=users.id WHERE substr(date, 1, 10)='${dateCondition}'`);
+    const results = await db.executeSql(`SELECT trips.id, price, date, name FROM trips LEFT JOIN users on trips.user_id=users.id WHERE substr(date, 1, 10)='${dateCondition}'`);
     results.forEach((result) => {
         for (let i = 0; i < result.rows.length; i++) {
             trips.push(result.rows.item(i));
@@ -68,7 +68,7 @@ export const deleteUser = async (db, id) => {
 }
 
 export const updateUser = async (db, id, newName) => {
-    const updateQuery = `UPDATE users SET name='${newName}'  WHERE id=${id}`;
+    const updateQuery = `UPDATE users SET name='${newName}' WHERE id=${id}`;
     const result = await db.executeSql(updateQuery);
     return result;
 }
