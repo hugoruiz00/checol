@@ -6,7 +6,7 @@ import { formatDate } from '../utils/dateFormatter'
 const SelectReportDate = ({ date, open, setDate, setOpen }) => {
     return (
         <View>
-            <Text style={styles.decription}>Reporte del día {formatDate(date)}</Text>
+            <Text style={styles.decription}>Reporte del {formatDate(date)}</Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => setOpen(true)}
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: 'bold',
         padding: 10,
+        textAlign: 'center',
     },
     button: {
         backgroundColor: "#2b50aa",

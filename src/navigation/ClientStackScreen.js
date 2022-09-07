@@ -13,6 +13,7 @@ const ClientStackScreen = () => {
                 component={ClientScreen}
                 options={{
                     title: 'Clientes',
+                    headerTitleAlign: 'center'
                 }}
             />
             <Stack.Screen
@@ -20,6 +21,7 @@ const ClientStackScreen = () => {
                 component={UpdateClientScreen}
                 options={{
                     title: 'Actualizar nombre del cliente',
+                    headerTitleAlign: 'center'
                 }}
             />
         </Stack.Navigator>

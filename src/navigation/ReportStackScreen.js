@@ -12,6 +12,7 @@ const ReportStackScreen = () => {
                 component={ReportScreen}
                 options={{
                     title: 'Reportes',
+                    headerTitleAlign: 'center'
                 }}
             />
         </Stack.Navigator>

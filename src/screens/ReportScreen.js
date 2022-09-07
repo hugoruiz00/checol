@@ -5,8 +5,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import ListTripItem from '../components/ListTripItem';
 import ReportSummary from '../components/ReportSummary';
 import SelectReportDate from '../components/SelectReportDate';
-import ItemSeparator from '../components/ItemSeparator';
-import LinearGradient from 'react-native-linear-gradient';
 import { formatDateForQuery } from '../utils/dateFormatter';
 import MessageForNoResults from '../components/MessageForNoResults';
 
@@ -33,11 +31,7 @@ const ReportScreen = ({ navigation }) => {
     return (
         <>
             <View style={styles.view}>
-                <LinearGradient
-                    colors={['#2b50aa45', '#2b50aa08']}
-
-                    style={styles.reportHeader}
-                >
+                <View style={styles.reportView}>
                     <SelectReportDate
                         setDate={setDate}
                         setOpen={setOpen}
@@ -48,13 +42,12 @@ const ReportScreen = ({ navigation }) => {
                         countTrips={countTrips}
                         sumPrices={sumPrices}
                     />
-                </LinearGradient>
+                </View>
                 {trips.length == 0 ?
                     <MessageForNoResults
                         message={'No hay viajes registrados en la fecha seleccionada.'}
                         textSecondary={'Pruebe con otra fecha.'} /> :
                     <FlatList
-                        style={styles.flatList}
                         data={trips}
                         keyExtractor={
                             (item) => item.id
@@ -62,7 +55,6 @@ const ReportScreen = ({ navigation }) => {
                         renderItem={
                             ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                         }
-                        ItemSeparatorComponent={() => <ItemSeparator />}
                     />
                 }
             </View>
@@ -72,14 +64,14 @@ const ReportScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     view: {
-        flex: 1
+        flex: 1,
     },
-    reportHeader: {
-        paddingHorizontal: 5,
+    reportView: {
+        backgroundColor: '#dbd7d7',
+        margin: 17,
+        padding: 5,
+        borderRadius: 10,
     },
-    flatList: {
-        marginHorizontal: 10
-    }
 });
 
 export default ReportScreen;

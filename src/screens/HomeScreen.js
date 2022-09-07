@@ -4,7 +4,6 @@ import ListTripItem from '../components/ListTripItem';
 import FloatingActionButton from '../components/FloatingActionButton.js';
 import { getDbConnection, getTrips } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
-import ItemSeparator from '../components/ItemSeparator';
 import { formatDateForQuery } from '../utils/dateFormatter';
 import MessageForNoResults from '../components/MessageForNoResults';
 
@@ -38,7 +37,6 @@ const HomeScreen = ({ navigation }) => {
                         renderItem={
                             ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                         }
-                        ItemSeparatorComponent={() => <ItemSeparator />}
                     />
                 }
             </View>

@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react';
 import ListClientItem from '../components/ListClientItem';
 import { getDbConnection, getUsers } from '../utils/db.js';
 import { useFocusEffect } from '@react-navigation/native';
-import ItemSeparator from '../components/ItemSeparator';
 import MessageForNoResults from '../components/MessageForNoResults';
 
 const ClientScreen = ({ navigation }) => {
@@ -35,7 +34,6 @@ const ClientScreen = ({ navigation }) => {
                         renderItem={
                             ({ item, index }) => <ListClientItem setUsers={setUsers} item={item} navigation={navigation}></ListClientItem>
                         }
-                        ItemSeparatorComponent={() => <ItemSeparator />}
                     />
                 }
             </View>

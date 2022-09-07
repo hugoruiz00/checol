@@ -41,7 +41,8 @@ export const insertTrip = async (db, price, userId) => {
 
 export const getTrips = async (db, dateCondition) => {
     const trips = [];
-    const results = await db.executeSql(`SELECT trips.id, price, date, name FROM trips LEFT JOIN users on trips.user_id=users.id WHERE substr(date, 1, 10)='${dateCondition}'`);
+    const results = await db.executeSql(`SELECT trips.id, price, date, name FROM trips LEFT JOIN users on trips.user_id=users.id
+    WHERE substr(date, 1, 10)='${dateCondition}' ORDER BY date DESC`);
     results.forEach((result) => {
         for (let i = 0; i < result.rows.length; i++) {
             trips.push(result.rows.item(i));

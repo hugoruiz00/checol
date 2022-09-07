@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     value: {
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: 'bold',
         color:"#2b50aa"
     }

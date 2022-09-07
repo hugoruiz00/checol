@@ -17,12 +17,15 @@ const ListTripItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f1f2f1',
+        backgroundColor: '#dbd7d7',
         borderRadius: 10,
+        marginHorizontal: 10,
+        marginVertical: 6,
         padding: 10,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     name: {
         fontWeight: 'bold',
@@ -35,8 +38,12 @@ const styles = StyleSheet.create({
         color: '#7c7c7c'
     },
     price: {
+        backgroundColor: '#2b50aa',
+        color: '#ffffff',
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 19,
+        padding: 5,
+        borderRadius: 6,
     }
 });
 

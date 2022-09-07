@@ -9,7 +9,10 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false }}        >
+        <Tab.Navigator screenOptions={{
+            headerShown: false,
+        }}
+        >
             <Tab.Screen
                 name="HomeTab"
                 component={HomeStackScreen}
@@ -21,7 +24,7 @@ const TabNavigator = () => {
                             source={require('../../assets/trips.png')}
                             text={'Viajes'}
                         />
-                    )
+                    ),
                 }}
             />
             <Tab.Screen

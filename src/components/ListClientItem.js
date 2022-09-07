@@ -25,7 +25,7 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                             width: 26,
                             height: 26,
                             tintColor: "#244c8a",
-                            marginHorizontal: 10
+                            marginHorizontal: 10,
                         }}
                     />
                 </TouchableOpacity>
@@ -77,9 +77,10 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f1f2f1',
+        backgroundColor: '#dbd7d7',
         borderRadius: 10,
         marginHorizontal: 10,
+        marginVertical: 6,
         padding: 10,
         flexDirection: 'row',
         justifyContent: 'space-between'

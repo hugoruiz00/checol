@@ -14,6 +14,7 @@ const HomeStackScreen = () => {
                 component={HomeScreen}
                 options={{
                     title: 'Viajes realizados',
+                    headerTitleAlign: 'center'
                 }}
             />
             <Stack.Screen
@@ -21,6 +22,7 @@ const HomeStackScreen = () => {
                 component={RegisterTripScreen}
                 options={{
                     title: 'Registrar viaje',
+                    headerTitleAlign: 'center'
                 }}
             />
             <Stack.Screen
@@ -28,6 +30,7 @@ const HomeStackScreen = () => {
                 component={RegisterClientScreen}
                 options={{
                     title: 'Registrar nuevo cliente',
+                    headerTitleAlign: 'center'
                 }}
             />
         </Stack.Navigator>
