@@ -78,8 +78,22 @@ const RegisterTripScreen = ({ navigation }) => {
                     options={users}
                     value={tripInfo.user}
                     onChange={(val) => onChangeUserInput(val)}
-                    hideInputFilter={false}
                     inputPlaceholder="Nombre del cliente"
+                    listEmptyText='No se ha encontrado'
+                    searchIconColor="#2b50aa"
+                    arrowIconColor="#2b50aa"
+                    containerStyle={{
+                        borderWidth: 1,
+                        borderColor: "#3c64c9ff",
+                        backgroundColor: "#eceff7ff",
+                        borderRadius: 8,
+                        height: 50,
+                        padding: 10,
+                        alignItems: 'center'
+                    }}
+                    selectedItemStyle={{
+                        color: '#424242'
+                    }}
                 />
                 {userErrorMsg && <ErrorMessage msg={userErrorMsg} />}
             </View>

@@ -9,8 +9,9 @@ const ErrorMessage = ({ msg }) => {
 
 const styles = StyleSheet.create({
     errorMsg: {
-        color: '#e01313',
-        fontSize: 15,
+        color: '#e94343',
+        fontSize: 16,
+        padding: 5
     }
 });
 

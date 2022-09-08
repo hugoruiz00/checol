@@ -22,11 +22,14 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     textInput: {
-        height: 50,
-        borderBottomWidth: 2,
+        height: 48,
+        borderWidth: 1.5,
         borderColor: "#3c64c9ff",
+        backgroundColor: "#eceff7ff",
         padding: 10,
         borderRadius: 8,
+        fontSize: 16.5,
+        color:'#424242'
     },
 });
 
