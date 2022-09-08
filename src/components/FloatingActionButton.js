@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 
-const FloatingActionButton = ({action}) => {
+const FloatingActionButton = ({ action }) => {
     return (
         <TouchableOpacity
             style={styles.button}
@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         position: 'absolute',
-        bottom: 10,
-        right: 10
+        bottom: 20,
+        right: 12,
     },
     buttonText: {
         color: 'white',
-        fontSize:40,
-        fontWeight:'bold',
-        alignSelf:'center'
+        fontSize: 40,
+        fontWeight: 'bold',
+        alignSelf: 'center'
     }
 });
 

@@ -14,7 +14,7 @@ const HomeStackScreen = () => {
                 component={HomeScreen}
                 options={{
                     title: 'Viajes realizados',
-                    headerTitleAlign: 'center'
+                    headerTitleAlign: 'center',
                 }}
             />
             <Stack.Screen

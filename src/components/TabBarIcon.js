@@ -9,16 +9,17 @@ const TabBarIcon = ({ focused, source, text, width }) => {
                 source={source}
                 resizeMode="contain"
                 style={{
-                    width: 25,
-                    height: 25,
+                    width: 28,
+                    height: 28,
                     tintColor: focused ? "#26438f" : "#263e47",
                 }}
             />
             <Text
                 style={{
                     color: focused ? "#26438f" : "#263e47",
-                    fontSize: 14,
-                    fontWeight: focused ? 'bold' : 'normal'
+                    fontSize: 15,
+                    fontWeight: focused ? 'bold' : 'normal',
+                    letterSpacing: 1
                 }}>
                 {text}
             </Text>
