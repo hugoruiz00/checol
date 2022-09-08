@@ -117,7 +117,7 @@ const RegisterTripScreen = ({ navigation }) => {
             <StyledButton
                 text={'Nuevo cliente'}
                 action={() => navigation.navigate('RegisterClient')}
-                customStyles={{ backgroundColor: "#6e6e6e", height: 35 }}>
+                customStyles={{ backgroundColor: "#5f5f5f", height: 40 }}>
             </StyledButton>
         </View >
     )
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },
     textSeparator: {
         alignSelf: 'center',
-        color: '#1a1a1a',
+        color: '#464646',
         fontSize: 16,
         marginBottom: 8,
     }

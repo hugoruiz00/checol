@@ -24,7 +24,7 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                         style={{
                             width: 25,
                             height: 25,
-                            tintColor: "#2b71db",
+                            tintColor: "#1e5ab4",
                             marginRight: 15,
                             marginLeft: 25,
                         }}
