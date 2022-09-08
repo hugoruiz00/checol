@@ -17,7 +17,7 @@ const ListTripItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#dbd7d7',
+        backgroundColor: '#ffffff',
         borderRadius: 10,
         marginHorizontal: 10,
         marginVertical: 6,
@@ -25,7 +25,12 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 10
     },
     name: {
         fontWeight: 'bold',

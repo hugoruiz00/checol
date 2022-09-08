@@ -34,6 +34,7 @@ const ClientScreen = ({ navigation }) => {
                         renderItem={
                             ({ item, index }) => <ListClientItem setUsers={setUsers} item={item} navigation={navigation}></ListClientItem>
                         }
+                        style={styles.flatList}
                     />
                 }
             </View>
@@ -43,7 +44,10 @@ const ClientScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     view: {
-        flex: 1
+        flex: 1,
+    },
+    flatList: {
+        paddingTop: 10
     }
 });
 

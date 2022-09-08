@@ -37,6 +37,7 @@ const HomeScreen = ({ navigation }) => {
                         renderItem={
                             ({ item, index }) => <ListTripItem item={item}></ListTripItem>
                         }
+                        style={styles.flatList}
                     />
                 }
             </View>
@@ -50,7 +51,10 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     view: {
-        flex: 1
+        flex: 1,
+    },
+    flatList: {
+        paddingTop: 10
     }
 });
 

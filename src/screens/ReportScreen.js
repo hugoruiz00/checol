@@ -67,10 +67,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     reportView: {
-        backgroundColor: '#dbd7d7',
+        backgroundColor: '#ffffff',
         margin: 17,
         padding: 5,
         borderRadius: 10,
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 10
     },
 });
 

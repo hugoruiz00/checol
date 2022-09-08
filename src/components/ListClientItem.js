@@ -9,7 +9,7 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                 <Text style={styles.name}>{item.item}</Text>
             </View>
             <View style={styles.imagesContainer}>
-
+                <Text style={styles.separator}>|</Text>
                 <TouchableOpacity
                     onPress={() => {
                         navigation.navigate('UpdateClient', {
@@ -22,10 +22,11 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                         source={require('../../assets/edit.png')}
                         resizeMode="contain"
                         style={{
-                            width: 26,
-                            height: 26,
-                            tintColor: "#244c8a",
-                            marginHorizontal: 10,
+                            width: 25,
+                            height: 25,
+                            tintColor: "#3c7ddf",
+                            marginRight: 15,
+                            marginLeft: 25,
                         }}
                     />
                 </TouchableOpacity>
@@ -63,10 +64,10 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
                         source={require('../../assets/delete.png')}
                         resizeMode="contain"
                         style={{
-                            width: 26,
-                            height: 26,
-                            tintColor: "#b92e41",
-                            marginHorizontal: 10
+                            width: 25,
+                            height: 25,
+                            tintColor: "#d64f4f",
+                            marginHorizontal: 15
                         }}
                     />
                 </TouchableOpacity>
@@ -77,13 +78,19 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#dbd7d7',
+        backgroundColor: '#ffffff',
         borderRadius: 10,
         marginHorizontal: 10,
         marginVertical: 6,
         padding: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 10
     },
     name: {
         fontWeight: 'bold',
@@ -91,7 +98,12 @@ const styles = StyleSheet.create({
         color: '#575757'
     },
     imagesContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    separator: {
+        fontSize: 25,
+        fontWeight: 'bold'
     }
 });
 
