@@ -13,7 +13,7 @@ const HomeStackScreen = () => {
                 name='Home'
                 component={HomeScreen}
                 options={{
-                    title: 'Viajes realizados',
+                    title: 'Viajes realizados de hoy',
                     headerTitleAlign: 'center',
                 }}
             />

@@ -13,7 +13,6 @@ const ClientScreen = ({ navigation }) => {
             const db = await getDbConnection();
             const usersFromDb = await getUsers(db);
             setUsers(usersFromDb);
-            db.close();
         }
         fetchDb();
     }, []);

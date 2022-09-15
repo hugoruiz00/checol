@@ -7,6 +7,7 @@ const ListClientItem = ({ setUsers, item, navigation }) => {
         <View style={styles.container}>
             <View>
                 <Text style={styles.name}>{item.item}</Text>
+                <Text style={styles.countTrips}>Viajes solicitados: {item.count_trips}</Text>
             </View>
             <View style={styles.imagesContainer}>
                 <Text style={styles.separator}>|</Text>
@@ -96,6 +97,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         color: '#575757'
+    },
+    countTrips: {
+        fontWeight: 'bold',
+        fontSize: 17,
+        color: '#6b6b6b'
     },
     imagesContainer: {
         flexDirection: 'row',

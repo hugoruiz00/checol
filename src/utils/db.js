@@ -49,10 +49,10 @@ export const getTrips = async (db, dateCondition) => {
 
 export const getUsers = async (db) => {
     const users = [];
-    const results = await db.executeSql("SELECT id, name FROM users");
+    const results = await db.executeSql("SELECT trips.user_id, name, COUNT(*) FROM trips INNER JOIN users ON users.id=trips.user_id GROUP BY trips.user_id ORDER BY	COUNT(*) DESC");
     results.forEach((result) => {
         for (let i = 0; i < result.rows.length; i++) {
-            users.push({ id: result.rows.item(i).id, item: result.rows.item(i).name });
+            users.push({ id: result.rows.item(i)['user_id'], item: result.rows.item(i)['name'], count_trips: result.rows.item(i)['COUNT(*)'] });
         }
     });
     return users;
