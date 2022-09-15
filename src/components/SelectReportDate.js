@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 10,
         textAlign: 'center',
+        color: '#5f5f5f'
     },
     button: {
         backgroundColor: "#2b50aa",

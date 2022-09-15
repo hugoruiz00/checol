@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     textDescription: {
         fontSize: 18,
         fontWeight: 'bold',
+        color: '#696969'
     },
     value: {
         fontSize: 17,

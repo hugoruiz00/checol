@@ -10,7 +10,8 @@ const StyledTextInput = ({ type, action, placeholder, value, errorMsg }) => {
                 onChangeText={action}
                 placeholder={placeholder}
                 keyboardType={type}
-                value={value}>
+                value={value}
+                placeholderTextColor='#424242'>
             </TextInput>
             {errorMsg && <ErrorMessage msg={errorMsg} />}
         </View>
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 8,
         fontSize: 16.5,
-        color:'#424242'
+        color:'#424242',
     },
 });
 

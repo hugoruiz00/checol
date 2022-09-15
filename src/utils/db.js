@@ -10,10 +10,6 @@ export const getDbConnection = async () => {
 }
 
 export const createTables = async (db) => {
-    // const delTrip = "DROP TABLE IF EXISTS trips";
-    // const delUser = "DROP TABLE IF EXISTS users";
-    // await db.executeSql(delTrip);
-    // await db.executeSql(delUser);
     const userTablequery = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100))";
     const tripTablequery = `CREATE TABLE IF NOT EXISTS trips(id INTEGER PRIMARY KEY AUTOINCREMENT, price REAL, date VARCHAR(50), user_id INTEGER,
             FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL)`;

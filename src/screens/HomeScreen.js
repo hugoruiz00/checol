@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.view}>
                 {trips.length == 0 ?
                     <MessageForNoResults
-                        message={'No hay viajes registrados.'}
+                        message={'No hay viajes registrados del día de hoy.'}
                         textSecondary={'Registre un viaje presionando el botón de la esquina'}
                     />
                     :

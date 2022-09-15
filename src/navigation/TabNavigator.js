@@ -12,15 +12,7 @@ const TabNavigator = () => {
         <Tab.Navigator screenOptions={{
             headerShown: false,
             tabBarStyle: {
-                marginHorizontal: 10,
-                marginBottom: 10,
-                borderRadius: 15,
                 height: 60,
-                shadowColor: '#000000',
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: 0.9,
-                shadowRadius: 2,
-                elevation: 10
             }
         }}
         >
